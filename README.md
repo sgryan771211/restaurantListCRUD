@@ -6,7 +6,7 @@ Restaurant list 是一份美食口袋名單，收錄了各個餐廳的資料
 ## Install
 開啟你的終端機
 1. 輸入 git clone https://github.com/sgryan771211/restaurantListCRUD.git
-2. 輸入 cd restaurant_list
+2. 輸入 cd restaurant_list_CRUD
 3. 輸入 npm install
 4. 輸入 node app.js
 5. 在瀏覽器網址上輸入 localhost:3000
