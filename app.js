@@ -5,6 +5,12 @@ const mongoose = require('mongoose')
 // 引用 express-handlebars
 const exphbs = require('express-handlebars')
 
+// 引用 body-parser
+const bodyParser = require('body-parser');
+
+// 設定 bodyParser
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // 告訴 express 使用 handlebars 當作 template engine 並預設 layout 是 main
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -28,7 +34,7 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
-// 載入 todo model
+// 載入 restaurantList model
 const RestaurantList = require('./models/restaurantList');
 
 // 設定路由
@@ -74,7 +80,26 @@ app.get('/search', (req, res) => {
 
 // 新增一筆  restaurant
 app.post('/restaurantList', (req, res) => {
-  res.send('建立 restaurant')
+  RestaurantList.find((err, restaurants) => {
+    if (err) return console.error(err)
+    const latestId = restaurants.length + 1
+    const restaurant = RestaurantList({
+      id: latestId,
+      name: req.body.name,
+      name_en: req.body.name_en,
+      category: req.body.category,
+      image: req.body.image,
+      location: req.body.location,
+      phone: req.body.phone,
+      google_map: req.body.google_map,
+      rating: req.body.rating,
+      description: req.body.description
+    })
+    restaurant.save(err => {
+      if (err) return console.error(err)
+      return res.redirect('/')                        // 新增完成後，將使用者導回首頁
+    })
+  })
 })
 
 // 修改 restaurant 頁面

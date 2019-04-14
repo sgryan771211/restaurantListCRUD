@@ -37,10 +37,108 @@
                 <i class="fas fa-star fa-xs"></i>
               </span>
 
+              <div class="text-right">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-danger">Edit <i class="far fa-edit"></i></button>
+                  <button type="button" class="btn btn-sm btn-outline-danger">Delete <i
+                      class="far fa-trash-alt"></i></button>
+                </div>
+              </div>
+
             </div>
           </div>
         </a>
         {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- create button -->
+<div class="create-button">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    新增餐廳資料 <i class="fas fa-plus-circle"></i>
+  </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">新增一筆餐廳資料</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/restaurantList" method="POST">
+          <div class="form-row">
+            <div class="form-group col-6">
+              <label for="name">餐廳名稱</label>
+              <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp"
+                placeholder="EX:XXX餐廳">
+            </div>
+
+            <div class="form-group col-6">
+              <label for="name_en">餐廳英文名稱</label>
+              <input type="text" class="form-control" id="name_en" name="name_en" aria-describedby="emailHelp"
+                placeholder="EX:XXX restaurant">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-6">
+              <label for="category">餐廳類型</label>
+              <input type="text" class="form-control" id="category" name="category" aria-describedby="emailHelp"
+                placeholder="EX:美式、日式">
+            </div>
+
+            <div class="form-group col-6">
+              <label for="phone">電話</label>
+              <input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp"
+                placeholder="EX:02 XXXX XXXX">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-8">
+              <label for="location">地址</label>
+              <input type="text" class="form-control" id="location" name="location" aria-describedby="emailHelp"
+                placeholder="EX:北市中正區連雲街 74 號">
+            </div>
+
+            <div class="form-group col-4">
+              <label for="rating">評分</label>
+              <input type="number" step="0.1" min="0" max="5" class="form-control" id="rating" name="rating"
+                aria-describedby="emailHelp" placeholder="最多5顆星">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="image">餐廳圖片</label>
+            <input type="text" class="form-control" id="image" name="image" aria-describedby="emailHelp"
+              placeholder="請輸入圖片網址 https://XXX.jpg">
+          </div>
+
+          <div class="form-group">
+            <label for="google_map">google地圖網址</label>
+            <input type="text" class="form-control" id="google_map" name="google_map" aria-describedby="emailHelp"
+              placeholder="請輸入google地圖網址">
+          </div>
+
+          <div class="form-group">
+            <label for="description">文字描述</label>
+            <textarea type="text" class="form-control" id="description" name="description" aria-describedby="emailHelp"
+              placeholder="請輸入這間餐廳的特色"></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
