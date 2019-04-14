@@ -59,6 +59,19 @@ app.get('/restaurantList/:restaurant_id', (req, res) => {
   })
 })
 
+// search 功能
+app.get('/search', (req, res) => {
+  RestaurantList.find((err, restaurants) => {
+    if (err) return console.error(err)
+    const keyword = req.query.keyword
+    const searchResults = restaurants.filter(restaurant => {
+      return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) ||
+        restaurant.category.toLowerCase().includes(keyword.toLowerCase())
+    })
+    res.render('index', { restaurants: searchResults, keyword: keyword })
+  })
+})
+
 // 新增一筆  restaurant
 app.post('/restaurantList', (req, res) => {
   res.send('建立 restaurant')
