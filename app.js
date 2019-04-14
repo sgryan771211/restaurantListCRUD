@@ -34,7 +34,7 @@ const RestaurantList = require('./models/restaurantList');
 // 設定路由
 // restaurantList 首頁
 app.get('/', (req, res) => {
-  RestaurantList.find((err, restaurants) => {                                 // 把 RestaurantList model 所有的資料都抓回來
+  RestaurantList.find((err, restaurants) => {                 // 把 RestaurantList model 所有的資料都抓回來
     if (err) return console.error(err)
     return res.render('index', { restaurants: restaurants })  // 將資料傳給 index 樣板
   })
@@ -51,8 +51,12 @@ app.get('/restaurantList/new', (req, res) => {
 })
 
 // 顯示一筆 restaurant 的詳細內容
-app.get('/restaurantList/:id', (req, res) => {
-  res.send('顯示 restaurant 的詳細內容')
+app.get('/restaurantList/:restaurant_id', (req, res) => {
+  RestaurantList.find((err, restaurants) => {
+    if (err) return console.error(err)
+    const restaurant = restaurants.filter(restaurant => restaurant.id == req.params.restaurant_id)
+    res.render('show', { restaurant: restaurant[0] })
+  })
 })
 
 // 新增一筆  restaurant
