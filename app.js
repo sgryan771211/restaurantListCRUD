@@ -95,9 +95,8 @@ app.post('/restaurantList', (req, res) => {
 
   restaurant.save(err => {
     if (err) return console.error(err)
-    return res.redirect('/')                        // 新增完成後，將使用者導回首頁
+    return res.redirect('/')
   })
-
 })
 
 // 修改 restaurant 頁面
@@ -106,12 +105,6 @@ app.get('/restaurantList/:id/edit', (req, res) => {
     if (err) return console.error(err)
     return res.render('edit', { restaurant: restaurant })
   })
-  // RestaurantList.find((err, restaurants) => {
-  //   if (err) return console.error(err)
-  //   const restaurant = restaurants.filter(restaurant => restaurant.id == req.params.restaurant_id)
-  //   return res.render('edit', { restaurant: restaurant })
-  // })
-
 })
 
 // 修改 restaurant
